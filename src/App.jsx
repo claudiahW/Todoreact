@@ -1,6 +1,7 @@
-import { NewTodoForm } from "./NewTodoForm";
-import "./styles.css";
 import { useState } from "react";
+import { NewTodoForm } from "./NewTodoForm";
+import { TodoList } from "./TodoList";
+import "./styles.css";
 
 export default function App() {
   const [todos, setTodos] = useState([]);
@@ -9,7 +10,7 @@ export default function App() {
     setTodos((currentTodos) => {
       return [
         ...currentTodos,
-        { id: crypto.randomUUID(), title: newItem, completed: false },
+        { id: crypto.randomUUID(), title, completed: false },
       ];
     });
   }
@@ -34,7 +35,7 @@ export default function App() {
     <>
       <NewTodoForm onSubmit={addTodo} />
       <h1 className="header">Todo List</h1>
-      <TodoList todos={todos}/>
+      <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
     </>
   );
 }
